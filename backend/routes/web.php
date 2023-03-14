@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,15 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function () {
-    return "Hello";
-});
+// Route::get('/post/{username}/{post_id}', [PostController::class, 'viewUserPost']);
 
-Route::get('/hello/world', function() {
-    return "hello world!";    
-});
 
-Route::get('/hello/{name}', function($name){
-    return $name;
-});
-            
+
+Route::get('/view-post/{username}/{post_id}', [PostController::class, 'viewUserPost']);
+
+#CREATE
+Route::get('/store/save', [PostController::class, 'save']);
+Route::get('/store/create', [PostController::class, 'create']);
+
+#READ
+Route::get('/view-all', [PostController::class, 'viewAllPosts']);
+Route::get('/show/{post_id}', [PostController::class, 'show']);
+Route::get('/show-where/{x}', [PostController::class, 'showWhere']);
